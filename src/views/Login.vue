@@ -9,20 +9,25 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { actionTypes } from "@/store/modules/auth";
+
 export default {
   name: "AppLoginView",
   methods: {
     login() {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.email, this.password)
-        .then((data) => {
-          console.log(data);
-          this.$router.push({ name: "feed" });
+      this.$store
+        .dispatch(actionTypes.login, {
+          email: this.email,
+          password: this.password,
         })
-        .catch((error) => {
-          console.log(error.code);
+        .then(() => {
+          this.$router.push({ name: "feed" });
         });
+    },
+    signInWithGoogle() {
+      this.$store.dispatch(actionTypes.signInWithGoogle).then(() => {
+        this.$router.push({ name: "feed" });
+      });
     },
   },
   data() {

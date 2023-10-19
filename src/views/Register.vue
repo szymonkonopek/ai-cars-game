@@ -4,39 +4,30 @@
     <input type="text" placeholder="Email" v-model="email" />
     <input type="text" placeholder="Password" v-model="password" />
     <button @click="register">Submit</button>
-    <button @click="signInWithGoogle">Login With Google</button>
+    <button @click="googleSignIn">Login With Google</button>
   </div>
 </template>
 
 <script>
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { actionTypes } from "@/store/modules/auth";
+
 export default {
   name: "AppRegisterView",
   methods: {
     register() {
-      createUserWithEmailAndPassword(getAuth(), this.email, this.password).then(
-        (data) => {
-          console.log(data);
-          this.$router.push({ name: "feed" });
-        }
-      );
-    },
-    signInWithGoogle() {
-      console.log("hello");
-      const provider = new GoogleAuthProvider();
-      signInWithPopup(getAuth(), provider)
-        .then((result) => {
-          console.log(result);
-          this.$router.push({ name: "feed" });
+      this.$store
+        .dispatch(actionTypes.register, {
+          email: this.email,
+          password: this.password,
         })
-        .catch((error) => {
-          alert(error.code);
+        .then(() => {
+          this.$router.push({ name: "feed" });
         });
+    },
+    googleSignIn() {
+      this.$store.dispatch(actionTypes.signInWithGoogle).then(() => {
+        this.$router.push({ name: "feed" });
+      });
     },
   },
   data() {

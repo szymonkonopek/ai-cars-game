@@ -4,12 +4,12 @@
 </template>
 
 <script>
-import AIapi from "@/api/axios";
+import { actionTypes } from "@/store/modules/gptCars";
 export default {
   name: "AppFeedView",
   methods: {
     handleClick() {
-      AIapi.getData();
+      this.$store.dispatch(actionTypes.getCar);
     },
   },
 };

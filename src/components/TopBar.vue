@@ -1,9 +1,7 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link>
-    <router-link :to="{ name: 'feed' }">Feed</router-link>
-    <router-link :to="{ name: 'login' }">Login</router-link>
-    <router-link :to="{ name: 'register' }">Register</router-link>
+    <router-link :to="{ name: 'home' }" v-if="!isLoggedIn">Home</router-link>
+    <router-link :to="{ name: 'feed' }" v-if="isLoggedIn">Feed</router-link>
     <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
   </nav>
 </template>
