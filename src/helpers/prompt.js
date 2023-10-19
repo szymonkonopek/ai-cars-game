@@ -8,7 +8,7 @@ const params = {
     {
       role: "system",
       content:
-        "Give user real car specification of real car. Generate data for specific car brand with real data. Json format, colour in hex, weight in kg, all values in string",
+        "Give user real car specification of real car. Generate data for specific car brand with real data. Json format, colour in hex, weight in kg, all values in string, all variable names lowercase",
     },
   ],
   max_tokens: 140,
