@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 export const actionTypes = {
@@ -13,6 +14,11 @@ export const actionTypes = {
   updateCurrentUser: "[auth] UpdateCurrentUser",
   logout: "[auth] logout",
   signInWithGoogle: "[auth] sing in with google",
+  GetMyuid: "[auth] my uid",
+};
+
+const state = {
+  uid: undefined,
 };
 
 const actions = {
@@ -56,6 +62,15 @@ const actions = {
         .catch((error) => {
           console.log(error.code);
         });
+    });
+  },
+  [actionTypes.GetMyuid]() {
+    return new Promise((resolve) => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        state.uid = user.uid;
+        resolve();
+      });
     });
   },
 };
