@@ -3,6 +3,9 @@ import Home from "@/views/Home";
 import Login from "@/views/Login";
 import Register from "@/views/Register";
 import Feed from "@/views/Feed";
+import Equipment from "@/views/Equipment";
+
+import Battle from "@/views/Battle";
 import { getAuth } from "firebase/auth";
 
 const routes = [
@@ -20,6 +23,22 @@ const routes = [
     path: "/register",
     name: "register",
     component: Register,
+  },
+  {
+    path: "/equipment",
+    name: "equipment",
+    component: Equipment,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/battle",
+    name: "battle",
+    component: Battle,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/feed",

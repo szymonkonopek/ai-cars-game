@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>car feed</div>
-    <div>=====</div>
-    <button @click="getCars">get cars</button>
+    <div>Car feed</div>
     <div v-for="(car, index) in cars" :key="index">
       <car-feed-item :carData="car" />
     </div>
@@ -10,7 +8,6 @@
 </template>
 
 <script>
-import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
 import { mapState } from "vuex";
 import CarFeedItem from "./CarFeedItem";
 
@@ -29,12 +26,6 @@ export default {
     ...mapState({
       // cars: (state) => state.firebaseDatabase.downloadedCars,
     }),
-  },
-  methods: {
-    getCars() {
-      console.log("get cars");
-      this.$store.dispatch(firebaseActionTypes.getCars);
-    },
   },
 };
 </script>

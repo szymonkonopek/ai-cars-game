@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import { mutationType } from "./gptCars";
 
 export const actionTypes = {
   register: "[auth] Register",
@@ -14,7 +15,7 @@ export const actionTypes = {
   updateCurrentUser: "[auth] UpdateCurrentUser",
   logout: "[auth] logout",
   signInWithGoogle: "[auth] sing in with google",
-  GetMyuid: "[auth] my uid",
+  GetMyUid: "[auth] my uid",
 };
 
 const state = {
@@ -64,7 +65,7 @@ const actions = {
         });
     });
   },
-  [actionTypes.GetMyuid]() {
+  [actionTypes.GetMyUid]() {
     return new Promise((resolve) => {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
@@ -77,4 +78,6 @@ const actions = {
 
 export default {
   actions,
+  state,
+  mutationType,
 };
