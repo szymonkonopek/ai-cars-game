@@ -14,6 +14,8 @@
 
 <script>
 import { mutationType } from "@/store/modules/firebaseDatabase";
+import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
+
 export default {
   name: "UserBattleItem",
   props: {
@@ -25,6 +27,9 @@ export default {
   methods: {
     handleClick() {
       this.$store.commit(mutationType.setSelectedUser, this.user);
+      this.$store.dispatch(firebaseActionTypes.getNotMyCars, {
+        uid: this.user.user_id,
+      });
     },
   },
 };

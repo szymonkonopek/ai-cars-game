@@ -3,20 +3,16 @@
   <button @click="handleGetCar">Get data</button>
   <button @click="handleSave">Save car</button>
   My cars
-  <car-feed :cars="otherCars"></car-feed>
 </template>
 
 <script>
 import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
 import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
 import { mapState } from "vuex";
-import CarFeed from "@/components/CarFeed.vue";
 
 export default {
   name: "AppFeedView",
-  components: {
-    CarFeed,
-  },
+  components: {},
   computed: {
     ...mapState({
       data: (state) => state.gptCars.data,

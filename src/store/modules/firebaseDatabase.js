@@ -1,5 +1,13 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, getDocs, addDoc, where, query } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getDoc,
+  doc,
+  addDoc,
+  where,
+  query,
+} from "firebase/firestore";
 import { db } from "@/main.js";
 
 const state = {
@@ -18,6 +26,7 @@ export const actionTypes = {
   selectMyCar: "[database] select my car",
   selectOtherCar: "[database] select other car",
   getUsers: "[database] get users",
+  getCarById: "[database] getCarById",
 };
 
 export const mutationType = {
@@ -30,6 +39,7 @@ export const mutationType = {
   selectOtherCarIdSuccess: "[database] Set other car id Success",
   setUsersSuccess: "[database] set Users Success",
   setSelectedUser: "[database] setSelectedUser",
+  getCarById: "[database] get car by id success",
 };
 
 const mutations = {
@@ -58,6 +68,9 @@ const mutations = {
   [mutationType.setUsersSuccess](state, payload) {
     state.users = payload;
   },
+  [mutationType.getCarByIdSuccess](state, payload) {
+    state.users = payload;
+  },
 };
 
 const actions = {
@@ -74,8 +87,9 @@ const actions = {
     });
   },
   [actionTypes.getNotMyCars](context, { uid }) {
+    console.log("uid", uid);
     return new Promise((resolve) => {
-      const q = query(collection(db, "cars"), where("user_id", "!=", uid));
+      const q = query(collection(db, "cars"), where("user_id", "==", uid));
       getDocs(q).then((result) => {
         let cars = [];
         result.docs.forEach((doc) => cars.push(doc));
@@ -114,6 +128,14 @@ const actions = {
       getDocs(q).then((result) => {
         context.commit(mutationType.setUsersSuccess, result.docs);
         resolve();
+      });
+    });
+  },
+  [actionTypes.getCarById](context, { id }) {
+    return new Promise((resolve) => {
+      const q = query(doc(db, "cars", id));
+      getDoc(q).then((result) => {
+        resolve(result);
       });
     });
   },

@@ -1,39 +1,40 @@
 <template>
   <div>
     <h1>Battle</h1>
-    <div class="d-flex justify-content-around">
-      <MyCarFeed :isCol="true"></MyCarFeed>
-      <CarFeed :cars="otherCars" :isCol="true"></CarFeed>
-      <UserBattleList></UserBattleList>
-    </div>
+    <BattleCarInfo :car="this.myCar"></BattleCarInfo>
+    <BattleCarInfo :car="this.otherCar"></BattleCarInfo>
   </div>
 </template>
 
 <script>
-import { actionTypes as authActionTypes } from "@/store/modules/auth";
-import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
-import UserBattleList from "@/components/UserBattleList.vue";
-import CarFeed from "@/components/CarFeed.vue";
+import BattleCarInfo from "@/components/BattleCarInfo.vue";
 import { mapState } from "vuex";
-import MyCarFeed from "@/components/MyCarFeed.vue";
+import { actionTypes } from "@/store/modules/firebaseDatabase";
 export default {
   name: "AppBattle",
   components: {
-    CarFeed,
-    MyCarFeed,
-    UserBattleList,
+    BattleCarInfo,
   },
   computed: {
     ...mapState({
-      otherCars: (state) => state.firebaseDatabase.otherCars,
-      uid: (state) => state.auth.uid,
+      mySelectedCar: (state) => state.firebaseDatabase.mySelectedCar,
+      otherSelectedCar: (state) => state.firebaseDatabase.otherSelectedCar,
     }),
   },
-
+  data() {
+    return {
+      myCar: undefined,
+      otherCar: undefined,
+    };
+  },
   mounted() {
-    this.$store.dispatch(authActionTypes.GetMyUid).then(() => {
-      this.$store.dispatch(firebaseActionTypes.getNotMyCars, { uid: this.uid });
-    });
+    this.$store
+      .dispatch(actionTypes.getCarById, {
+        id: this.mySelectedCar,
+      })
+      .then((result) => {
+        console.log("car", result[0]);
+      });
   },
 };
 </script>

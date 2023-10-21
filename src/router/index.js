@@ -5,8 +5,9 @@ import Register from "@/views/Register";
 import Feed from "@/views/Feed";
 import Equipment from "@/views/Equipment";
 import Username from "@/views/Username";
-
 import Battle from "@/views/Battle";
+
+import FindOpponent from "@/views/FindOpponent";
 import { getAuth } from "firebase/auth";
 
 const routes = [
@@ -34,6 +35,14 @@ const routes = [
     path: "/equipment",
     name: "equipment",
     component: Equipment,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/find-opponent",
+    name: "findOpponent",
+    component: FindOpponent,
     meta: {
       requiresAuth: true,
     },

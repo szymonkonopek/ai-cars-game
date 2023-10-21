@@ -2,7 +2,9 @@
   <nav>
     <router-link :to="{ name: 'home' }" v-if="!isLoggedIn">Home</router-link>
     <router-link :to="{ name: 'feed' }" v-if="isLoggedIn">Feed</router-link>
-    <router-link :to="{ name: 'battle' }" v-if="isLoggedIn">Battle</router-link>
+    <router-link :to="{ name: 'findOpponent' }" v-if="isLoggedIn"
+      >Find opponent</router-link
+    >
 
     <router-link :to="{ name: 'equipment' }" v-if="isLoggedIn"
       >Equipment</router-link
