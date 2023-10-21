@@ -4,6 +4,7 @@ import Login from "@/views/Login";
 import Register from "@/views/Register";
 import Feed from "@/views/Feed";
 import Equipment from "@/views/Equipment";
+import Username from "@/views/Username";
 
 import Battle from "@/views/Battle";
 import { getAuth } from "firebase/auth";
@@ -13,6 +14,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/username",
+    name: "username",
+    component: Username,
   },
   {
     path: "/login",

@@ -10,7 +10,7 @@
 import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
 import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
 import { mapState } from "vuex";
-import CarFeed from "@/components/CarFeed";
+import CarFeed from "@/components/CarFeed.vue";
 
 export default {
   name: "AppFeedView",

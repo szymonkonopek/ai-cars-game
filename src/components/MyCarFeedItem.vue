@@ -1,7 +1,7 @@
 <template>
   <button
     @click="handleClick"
-    class="card"
+    class="card m-1"
     :class="{ 'border-primary': id == selectedCar }"
     style="width: 18rem"
   >
@@ -20,6 +20,7 @@
     </div>
   </button>
 </template>
+
 <script>
 import { actionTypes } from "@/store/modules/firebaseDatabase";
 import { mapState } from "vuex";
@@ -38,13 +39,13 @@ export default {
   },
   computed: {
     ...mapState({
-      selectedCar: (state) => state.firebaseDatabase.otherSelectedCar,
+      selectedCar: (state) => state.firebaseDatabase.mySelectedCar,
     }),
   },
   methods: {
     handleClick() {
       console.log(this.id);
-      this.$store.dispatch(actionTypes.selectOtherCar, { id: this.id });
+      this.$store.dispatch(actionTypes.selectMyCar, { id: this.id });
     },
   },
 };

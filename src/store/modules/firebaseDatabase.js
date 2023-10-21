@@ -5,12 +5,19 @@ import { db } from "@/main.js";
 const state = {
   otherCars: undefined,
   myCars: undefined,
+  otherSelectedCar: false,
+  mySelectedCar: undefined,
+  users: undefined,
+  selectedUser: "",
 };
 
 export const actionTypes = {
   saveCar: "[database] save car",
   getNotMyCars: "[database] getNotMyCars",
   getMyCars: "[database] get my cars",
+  selectMyCar: "[database] select my car",
+  selectOtherCar: "[database] select other car",
+  getUsers: "[database] get users",
 };
 
 export const mutationType = {
@@ -19,6 +26,10 @@ export const mutationType = {
   getNotMyCarsSuccess: "[database] getNotMyCarsSuccess ",
   getMyCarsSuccess: "[database] GetMyCarSuccess ",
   getMyCarsStart: "[database] Get my cars Start ",
+  selectMyCarIdSuccess: "[database] Set my car id Success",
+  selectOtherCarIdSuccess: "[database] Set other car id Success",
+  setUsersSuccess: "[database] set Users Success",
+  setSelectedUser: "[database] setSelectedUser",
 };
 
 const mutations = {
@@ -34,6 +45,18 @@ const mutations = {
   },
   [mutationType.getMyCarsSuccess](state, payload) {
     state.myCars = payload;
+  },
+  [mutationType.selectMyCarIdSuccess](state, payload) {
+    state.mySelectedCar = payload;
+  },
+  [mutationType.selectOtherCarIdSuccess](state, payload) {
+    state.otherSelectedCar = payload;
+  },
+  [mutationType.setSelectedUser](state, payload) {
+    state.selectedUser = payload;
+  },
+  [mutationType.setUsersSuccess](state, payload) {
+    state.users = payload;
   },
 };
 
@@ -51,27 +74,45 @@ const actions = {
     });
   },
   [actionTypes.getNotMyCars](context, { uid }) {
-    console.log("hello");
     return new Promise((resolve) => {
       const q = query(collection(db, "cars"), where("user_id", "!=", uid));
       getDocs(q).then((result) => {
         let cars = [];
-        result.docs.forEach((doc) => cars.push(doc.data()));
+        result.docs.forEach((doc) => cars.push(doc));
         context.commit(mutationType.getNotMyCarsSuccess, cars);
-        console.log("cars", cars);
         resolve();
       });
     });
   },
   [actionTypes.getMyCars](context, { uid }) {
-    console.log("uid", uid);
     return new Promise((resolve) => {
       context.commit(mutationType.getMyCarsStart);
       const q = query(collection(db, "cars"), where("user_id", "==", uid));
       getDocs(q).then((result) => {
         let cars = [];
-        result.docs.forEach((doc) => cars.push(doc.data()));
+        result.docs.forEach((doc) => cars.push(doc));
         context.commit(mutationType.getMyCarsSuccess, cars);
+        resolve();
+      });
+    });
+  },
+  [actionTypes.selectMyCar](context, { id }) {
+    return new Promise((resolve) => {
+      context.commit(mutationType.selectMyCarIdSuccess, id);
+      resolve();
+    });
+  },
+  [actionTypes.selectOtherCar](context, { id }) {
+    return new Promise((resolve) => {
+      context.commit(mutationType.selectOtherCarIdSuccess, id);
+      resolve();
+    });
+  },
+  [actionTypes.getUsers](context, { uid }) {
+    return new Promise((resolve) => {
+      const q = query(collection(db, "users"), where("user_id", "!=", uid));
+      getDocs(q).then((result) => {
+        context.commit(mutationType.setUsersSuccess, result.docs);
         resolve();
       });
     });

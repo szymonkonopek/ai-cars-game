@@ -1,0 +1,31 @@
+<template>
+  <button @click="handleClick" class="card" style="width: 18rem">
+    <!-- <img
+      class="card-img-top"
+      :src="carData.data.logoImg"
+      alt="Card image cap"
+    /> -->
+    <div class="card-body text-left">
+      <h5 class="card-title">{{ user.username }}</h5>
+      <p class="card-text">Select me</p>
+    </div>
+  </button>
+</template>
+
+<script>
+import { mutationType } from "@/store/modules/firebaseDatabase";
+export default {
+  name: "UserBattleItem",
+  props: {
+    user: {
+      typeof: Object,
+      required: true,
+    },
+  },
+  methods: {
+    handleClick() {
+      this.$store.commit(mutationType.setSelectedUser, this.user);
+    },
+  },
+};
+</script>

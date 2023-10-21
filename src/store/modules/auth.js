@@ -7,6 +7,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { mutationType } from "./gptCars";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/main.js";
 
 export const actionTypes = {
   register: "[auth] Register",
@@ -30,9 +32,15 @@ const actions = {
         credentials.email,
         credentials.password
       )
-        .then((data) => {
-          console.log(data);
-          resolve();
+        .then(() => {
+          const auth = getAuth();
+          onAuthStateChanged(auth, (user) => {
+            setDoc(doc(db, "users", user.uid), {
+              username: credentials.username,
+              user_id: user.uid,
+            });
+            resolve();
+          });
         })
         .catch((error) => {
           console.log(error.code);
