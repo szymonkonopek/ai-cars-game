@@ -14,6 +14,15 @@ const getCar = (params) => {
     });
 };
 
+const compareCars = (params) => {
+  return client
+    .post("https://api.openai.com/v1/chat/completions", params)
+    .then((result) => {
+      return result.data;
+    });
+};
+
 export default {
   getCar,
+  compareCars,
 };

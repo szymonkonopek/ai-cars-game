@@ -1,15 +1,19 @@
 <template>
   <div>
     <h1>Battle</h1>
-    <BattleCarInfo :car="this.myCar"></BattleCarInfo>
-    <BattleCarInfo :car="this.otherCar"></BattleCarInfo>
+    <BattleCarInfo :carId="this.mySelectedCar"></BattleCarInfo>
+    <BattleCarInfo :carId="this.otherSelectedCar"></BattleCarInfo>
+    <button @click="handleStartBattle">Start</button>
+    {{ this.explanation }}
   </div>
 </template>
 
 <script>
+import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
+import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
+
 import BattleCarInfo from "@/components/BattleCarInfo.vue";
 import { mapState } from "vuex";
-import { actionTypes } from "@/store/modules/firebaseDatabase";
 export default {
   name: "AppBattle",
   components: {
@@ -23,18 +27,39 @@ export default {
   },
   data() {
     return {
-      myCar: undefined,
-      otherCar: undefined,
+      car1: "",
+      car2: "",
+      explanation: "",
     };
   },
-  mounted() {
-    this.$store
-      .dispatch(actionTypes.getCarById, {
-        id: this.mySelectedCar,
-      })
-      .then((result) => {
-        console.log("car", result[0]);
-      });
+  methods: {
+    handleStartBattle() {
+      this.$store
+        .dispatch(firebaseActionTypes.getCarById, { id: this.mySelectedCar })
+        .then((myCar) => {
+          this.car1 = myCar;
+        })
+        .then(
+          this.$store
+            .dispatch(firebaseActionTypes.getCarById, {
+              id: this.otherSelectedCar,
+            })
+            .then((otherCar) => {
+              this.car2 = otherCar;
+            })
+            .then(() => {
+              this.$store
+                .dispatch(gptActionTypes.getVersusCarsResults, {
+                  car1: this.car1,
+                  car2: this.car2,
+                })
+                .then((response) => {
+                  console.log(response);
+                  this.explanation = response;
+                });
+            })
+        );
+    },
   },
 };
 </script>

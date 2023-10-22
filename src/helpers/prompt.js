@@ -1,4 +1,4 @@
-const params = {
+export const carParams = {
   model: "gpt-3.5-turbo",
   messages: [
     {
@@ -18,4 +18,22 @@ const params = {
   presence_penalty: 0,
 };
 
-export default params;
+export const versusParams = {
+  model: "gpt-3.5-turbo",
+  messages: [
+    {
+      role: "user",
+      content: ``,
+    },
+    {
+      role: "system",
+      content:
+        "Compare 2 cars by comparing their stats and tell which would win in specific category. You must select a winner. Return JSON file {'winner','explanation'}. Winner can only by 'car1' or 'car2'. Give short explanation (2 sentences)",
+    },
+  ],
+  max_tokens: 200,
+  top_p: 1,
+  temperature: 0.5,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+};

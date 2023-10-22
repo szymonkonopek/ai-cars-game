@@ -87,7 +87,6 @@ const actions = {
     });
   },
   [actionTypes.getNotMyCars](context, { uid }) {
-    console.log("uid", uid);
     return new Promise((resolve) => {
       const q = query(collection(db, "cars"), where("user_id", "==", uid));
       getDocs(q).then((result) => {
@@ -135,7 +134,7 @@ const actions = {
     return new Promise((resolve) => {
       const q = query(doc(db, "cars", id));
       getDoc(q).then((result) => {
-        resolve(result);
+        resolve(result.data());
       });
     });
   },
