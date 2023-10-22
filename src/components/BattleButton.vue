@@ -1,12 +1,14 @@
 <template>
-  <div class="fixed-bottom d-flex justify-content-center">
-    <button
-      :class="{ 'd-none': !this.otherSelectedCar || !this.mySelectedCar }"
-      @click="handleClick"
-    >
-      Challange this car
-    </button>
-  </div>
+  <button
+    @click="handleClick"
+    class="fixed-bottom justify-content-center btn btn-primary rounded-0"
+    :class="{
+      'd-none': !this.otherSelectedCar || !this.mySelectedCar,
+      'd-flex': this.otherSelectedCar && this.mySelectedCar,
+    }"
+  >
+    Challange this car
+  </button>
 </template>
 
 <script>

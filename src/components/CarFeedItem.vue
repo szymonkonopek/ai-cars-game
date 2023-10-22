@@ -1,7 +1,7 @@
 <template>
   <button
     @click="handleClick"
-    class="card"
+    class="card m-2"
     :class="{ 'border-primary': id == selectedCar }"
     style="width: 18rem"
   >

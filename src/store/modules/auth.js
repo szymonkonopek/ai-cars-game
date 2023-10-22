@@ -52,7 +52,10 @@ const actions = {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          console.log(result);
+          setDoc(doc(db, "users", result.user.uid), {
+            user_id: result.user.uid,
+            username: result.user.displayName,
+          });
           resolve();
         })
         .catch((error) => {

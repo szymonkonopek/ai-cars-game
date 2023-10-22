@@ -5,6 +5,7 @@ import categoryList from "@/helpers/categoryList";
 
 const state = {
   data: undefined,
+  isLoading: false,
 };
 
 export const actionTypes = {
@@ -13,12 +14,17 @@ export const actionTypes = {
 };
 
 export const mutationType = {
-  getCarSuccess: "[auth] getCarSuccess ",
+  getCarSuccess: "[gpt] getCarSuccess ",
+  getCarStart: "[gpt] getCarStart",
 };
 
 const mutations = {
   [mutationType.getCarSuccess](state, payload) {
     state.data = payload;
+    state.isLoading = false;
+  },
+  [mutationType.getCarStart](state) {
+    state.isLoading = true;
   },
 };
 
@@ -32,11 +38,12 @@ const actions = {
     const carStats = randomItem(carList);
     carParams.messages[0].content = `Create car spec: Brand = ${carStats.name}, model, horsepower , type, weight, colour, price_in_usd, production_year`;
     return new Promise((resolve) => {
+      context.commit(mutationType.getCarStart);
       gptApi.getCar(carParams).then((response) => {
         const data = JSON.parse(response.choices[0].message.content);
         data.logoImg = carStats.logo;
         context.commit(mutationType.getCarSuccess, data);
-        resolve();
+        resolve(data);
       });
     });
   },
@@ -48,8 +55,7 @@ const actions = {
     )}. Category: ${randomItem(categoryList)}`;
     return new Promise((resolve) => {
       gptApi.compareCars(versusParams).then((response) => {
-        console.log("api", response.choices[0].message.content);
-        resolve(response.choices[0].message.content);
+        resolve(JSON.parse(response.choices[0].message.content));
       });
     });
   },

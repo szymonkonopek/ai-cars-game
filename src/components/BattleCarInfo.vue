@@ -1,7 +1,9 @@
 <template>
-  <div class="card">
-    <h1>Battle info</h1>
-    {{ car.brand }}
+  <div class="card m-2">
+    <div class="card-body text-left">
+      <h1>{{ this.title }}</h1>
+      {{ car.brand }}
+    </div>
   </div>
 </template>
 
@@ -13,6 +15,10 @@ export default {
   props: {
     carId: {
       typeof: Object,
+      required: true,
+    },
+    title: {
+      typeof: String,
       required: true,
     },
   },

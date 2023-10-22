@@ -1,13 +1,10 @@
 <template>
-  <div>Feed (other cars)</div>
-  <button @click="handleGetCar">Get data</button>
-  <button @click="handleSave">Save car</button>
-  My cars
+  <div>Feed</div>
 </template>
 
 <script>
-import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
-import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
+// import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
+// import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
 import { mapState } from "vuex";
 
 export default {
@@ -20,13 +17,6 @@ export default {
       otherCars: (state) => state.firebaseDatabase.otherCars,
     }),
   },
-  methods: {
-    handleGetCar() {
-      this.$store.dispatch(gptActionTypes.getCar);
-    },
-    handleSave() {
-      this.$store.dispatch(firebaseActionTypes.saveCar, { data: this.data });
-    },
-  },
+  methods: {},
 };
 </script>

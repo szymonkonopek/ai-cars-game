@@ -27,14 +27,32 @@
         </li>
         <li class="nav-item">
           <router-link
-            :to="{ name: 'findOpponent' }"
+            :to="{ name: 'rewards' }"
             class="nav-link"
             v-if="isLoggedIn"
-            >Find opponent</router-link
-          >
+            >Rewards
+            <i
+              class="bi bi-award-fill text-warning"
+              style="font-size: 15px"
+            ></i>
+          </router-link>
         </li>
       </ul>
     </div>
+    <router-link
+      :to="{ name: 'login' }"
+      v-if="!isLoggedIn"
+      class="btn btn-primary mr-3"
+    >
+      Sign In
+    </router-link>
+    <router-link
+      :to="{ name: 'register' }"
+      v-if="!isLoggedIn"
+      class="btn btn-secondary"
+    >
+      Register
+    </router-link>
     <button @click="handleSignOut" v-if="isLoggedIn" class="btn btn-light">
       Sign out
     </button>

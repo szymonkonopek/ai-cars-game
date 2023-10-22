@@ -13,7 +13,7 @@
           @click="handleBackClick"
           class="btn btn-light shadow-none mr-3 mb-2"
         >
-          <i class="bi bi-backspace fa-lg" style="font-size: 36px"></i>
+          <i class="bi bi-backspace fa-lg" style="font-size: 24px"></i>
         </button>
         <h2>{{ selectedUser.username }}'s cars</h2>
       </div>

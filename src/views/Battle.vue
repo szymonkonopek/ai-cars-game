@@ -1,9 +1,23 @@
 <template>
   <div>
-    <h1>Battle</h1>
-    <BattleCarInfo :carId="this.mySelectedCar"></BattleCarInfo>
-    <BattleCarInfo :carId="this.otherSelectedCar"></BattleCarInfo>
-    <button @click="handleStartBattle">Start</button>
+    <h1 class="m-5">Battle</h1>
+    <div class="d-flex justify-content-around">
+      <BattleCarInfo
+        :carId="this.mySelectedCar"
+        :title="'My car'"
+      ></BattleCarInfo>
+      <BattleCarInfo
+        :carId="this.otherSelectedCar"
+        :title="'Enemy car'"
+      ></BattleCarInfo>
+    </div>
+
+    <button
+      @click="handleStartBattle"
+      class="d-flex fixed-bottom justify-content-center btn btn-primary rounded-0"
+    >
+      Start race
+    </button>
     {{ this.explanation }}
   </div>
 </template>

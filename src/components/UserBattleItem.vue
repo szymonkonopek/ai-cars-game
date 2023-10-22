@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick" class="card" style="width: 18rem">
+  <button @click="handleClick" class="card m-2" style="width: 18rem">
     <!-- <img
       class="card-img-top"
       :src="carData.data.logoImg"

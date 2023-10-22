@@ -1,7 +1,7 @@
 <template>
   <button
     @click="handleClick"
-    class="card m-1"
+    class="card m-2"
     :class="{ 'border-primary': id == selectedCar }"
     style="width: 18rem"
   >
@@ -10,7 +10,10 @@
       :src="carData.data.logoImg"
       alt="Card image cap"
     /> -->
-    <div class="card-body text-left">
+    <div class="card-body text-left position-relative">
+      <div class="position-relative">
+        <i class="bi bi-info-circle float-right"></i>
+      </div>
       <h5 class="card-title">{{ carData.data.brand }}</h5>
       <h6 class="card-subtitle text-muted">{{ carData.data.model }}</h6>
       <p class="card-text">
@@ -47,6 +50,9 @@ export default {
       console.log(this.id);
       this.$store.dispatch(actionTypes.selectMyCar, { id: this.id });
     },
+  },
+  mounted() {
+    this.$store.dispatch(actionTypes.selectMyCar, { id: "" });
   },
 };
 </script>
