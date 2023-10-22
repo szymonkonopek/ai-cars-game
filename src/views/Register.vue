@@ -29,12 +29,9 @@ export default {
         });
     },
     googleSignIn() {
-      this.$store
-        .dispatch(actionTypes.signInWithGoogle)
-        .then(() => {})
-        .then(() => {
-          this.$router.push({ name: "feed" });
-        });
+      this.$store.dispatch(actionTypes.signInWithGoogle).then(() => {
+        this.$router.push({ name: "feed" });
+      });
     },
   },
   data() {

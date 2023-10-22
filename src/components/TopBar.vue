@@ -1,16 +1,43 @@
 <template>
-  <nav>
-    <router-link :to="{ name: 'home' }" v-if="!isLoggedIn">Home</router-link>
-    <router-link :to="{ name: 'feed' }" v-if="isLoggedIn">Feed</router-link>
-    <router-link :to="{ name: 'findOpponent' }" v-if="isLoggedIn"
-      >Find opponent</router-link
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link :to="{ name: 'home' }" v-if="!isLoggedIn" class="navbar-brand">
+      <i class="bi bi-car-front-fill"></i> Home</router-link
     >
-
-    <router-link :to="{ name: 'equipment' }" v-if="isLoggedIn"
-      >Equipment</router-link
+    <router-link :to="{ name: 'feed' }" class="navbar-brand" v-if="isLoggedIn">
+      <i class="bi bi-car-front-fill"></i>
+      Feed</router-link
     >
-
-    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <router-link
+            :to="{ name: 'findOpponent' }"
+            class="nav-link"
+            v-if="isLoggedIn"
+            >Find opponent</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{ name: 'equipment' }"
+            v-if="isLoggedIn"
+            class="nav-link"
+            >Equipment</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link
+            :to="{ name: 'findOpponent' }"
+            class="nav-link"
+            v-if="isLoggedIn"
+            >Find opponent</router-link
+          >
+        </li>
+      </ul>
+    </div>
+    <button @click="handleSignOut" v-if="isLoggedIn" class="btn btn-light">
+      Sign out
+    </button>
   </nav>
 </template>
 
