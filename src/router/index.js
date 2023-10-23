@@ -93,8 +93,7 @@ router.beforeEach(async (to, from, next) => {
     if (await getCurrentUser()) {
       next();
     } else {
-      alert("you dont have access");
-      next("/");
+      next("/login");
     }
   } else {
     next();

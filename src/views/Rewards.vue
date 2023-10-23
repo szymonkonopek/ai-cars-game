@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 7rem">
     <div class="d-flex flex-column justify-content-center align-items-center">
       <div :class="{ 'd-none': this.car || this.isLoading }">
         <i

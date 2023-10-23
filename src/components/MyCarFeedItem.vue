@@ -10,7 +10,7 @@
       :src="carData.data.logoImg"
       alt="Card image cap"
     /> -->
-    <div class="card-body text-left position-relative">
+    <div class="card-body text-left">
       <div class="position-relative">
         <i class="bi bi-info-circle float-right"></i>
       </div>

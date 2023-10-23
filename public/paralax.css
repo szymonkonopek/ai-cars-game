@@ -1,0 +1,10 @@
+.paralax {
+  background-image: url("./hero.png");
+
+  min-height: 70vh;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

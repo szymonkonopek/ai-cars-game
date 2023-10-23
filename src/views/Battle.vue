@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 7rem">
     <h1 class="m-5">Battle</h1>
     <div class="d-flex justify-content-around">
       <BattleCarInfo

@@ -1,12 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
     <router-link :to="{ name: 'home' }" v-if="!isLoggedIn" class="navbar-brand">
-      <i class="bi bi-car-front-fill"></i> Home</router-link
-    >
+      <i class="bi bi-car-front-fill m-4"></i
+    ></router-link>
     <router-link :to="{ name: 'feed' }" class="navbar-brand" v-if="isLoggedIn">
       <i class="bi bi-car-front-fill"></i>
-      Feed</router-link
-    >
+    </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -42,18 +41,22 @@
     <router-link
       :to="{ name: 'login' }"
       v-if="!isLoggedIn"
-      class="btn btn-primary mr-3"
+      class="btn btn-primary me-3 shadow-sm"
     >
       Sign In
     </router-link>
     <router-link
       :to="{ name: 'register' }"
       v-if="!isLoggedIn"
-      class="btn btn-secondary"
+      class="btn btn-light me-3 shadow-lg"
     >
       Register
     </router-link>
-    <button @click="handleSignOut" v-if="isLoggedIn" class="btn btn-light">
+    <button
+      @click="handleSignOut"
+      v-if="isLoggedIn"
+      class="btn btn-light shadow-sm"
+    >
       Sign out
     </button>
   </nav>

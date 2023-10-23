@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top: 7rem">
     <div>username</div>
     <form @submit.prevent="submit">
       <input type="text" placeholder="username" v-model="username" />
