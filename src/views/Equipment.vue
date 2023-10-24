@@ -1,6 +1,6 @@
 <template>
   <div class="w-75 mx-auto" style="margin-top: 7rem">
-    <my-car-feed></my-car-feed>
+    <my-car-feed :isInfoVisible="true"></my-car-feed>
   </div>
 </template>
 

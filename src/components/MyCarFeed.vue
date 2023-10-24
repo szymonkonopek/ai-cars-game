@@ -1,9 +1,17 @@
 <template>
   <div>
     <h2>My cars</h2>
-    <div class="d-flex flex-wrap mx-auto" :class="{ 'flex-column': isCol }">
+    <div
+      class="d-flex mx-auto"
+      :class="{ 'flex-column overflow-auto': isCol, 'flex-wrap': !isCol }"
+      :style="{ 'max-height': isCol ? '60vh' : none }"
+    >
       <div v-for="(car, index) in cars" :key="index">
-        <my-car-feed-item :carData="car.data()" :id="car.id" />
+        <my-car-feed-item
+          :carData="car.data()"
+          :id="car.id"
+          :isInfoVisible="this.isInfoVisible"
+        />
       </div>
     </div>
   </div>
@@ -29,6 +37,10 @@ export default {
   },
   props: {
     isCol: {
+      typeof: Boolean,
+      required: false,
+    },
+    isInfoVisible: {
       typeof: Boolean,
       required: false,
     },

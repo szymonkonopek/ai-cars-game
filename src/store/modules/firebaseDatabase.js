@@ -7,6 +7,7 @@ import {
   addDoc,
   where,
   query,
+  deleteDoc,
 } from "firebase/firestore";
 import { db } from "@/main.js";
 
@@ -27,6 +28,7 @@ export const actionTypes = {
   selectOtherCar: "[database] select other car",
   getUsers: "[database] get users",
   getCarById: "[database] getCarById",
+  deleteCarById: "[database] delete car by id",
 };
 
 export const mutationType = {
@@ -135,6 +137,15 @@ const actions = {
       const q = query(doc(db, "cars", id));
       getDoc(q).then((result) => {
         resolve(result.data());
+      });
+    });
+  },
+  [actionTypes.deleteCarById](context, { id }) {
+    console.log("da", id);
+    return new Promise((resolve) => {
+      const q = query(doc(db, "cars", id));
+      deleteDoc(q).then(() => {
+        resolve();
       });
     });
   },

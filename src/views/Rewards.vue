@@ -28,7 +28,7 @@
         style="width: 175px; height: 175px"
         role="status"
       >
-        <span class="sr-only">Loading...</span>
+        <span class="sr-only"></span>
       </div>
       <button class="btn btn-warning btn-lg mt-4" @click="handleGetCar">
         Get a new car!

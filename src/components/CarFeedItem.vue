@@ -14,8 +14,7 @@
       <h5 class="card-title">{{ carData.data.brand }}</h5>
       <h6 class="card-subtitle text-muted">{{ carData.data.model }}</h6>
       <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+        {{ carData.data.description }}
       </p>
     </div>
   </button>

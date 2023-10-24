@@ -1,22 +1,24 @@
 <template>
-  <div>
+  <div class="d-flex flex-column align-items-center">
+    <div v-if="selectedUser" class="d-flex">
+      <button
+        @click="handleBackClick"
+        class="btn btn-light shadow-none mr-3 mb-2"
+      >
+        <i class="bi bi-backspace fa-lg" style="font-size: 24px"></i>
+      </button>
+      <h2>{{ selectedUser.username }}'s cars</h2>
+      <div class="d-flex align-items-center"></div>
+    </div>
     <div
-      class="gap-3 flex-wrap mx-auto mb-3"
+      class="mx-auto mb-3 flex-column overflow-auto"
+      style="max-height: 60vh"
       :class="{
         'd-none': !selectedUser,
         'd-flex': selectedUser,
         'flex-column': isCol,
       }"
     >
-      <div class="d-flex align-items-center">
-        <button
-          @click="handleBackClick"
-          class="btn btn-light shadow-none mr-3 mb-2"
-        >
-          <i class="bi bi-backspace fa-lg" style="font-size: 24px"></i>
-        </button>
-        <h2>{{ selectedUser.username }}'s cars</h2>
-      </div>
       <div v-for="(car, index) in cars" :key="index">
         <CarFeedItem :carData="car.data()" :id="car.id" />
       </div>

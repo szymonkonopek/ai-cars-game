@@ -4,7 +4,7 @@
       <i class="bi bi-car-front-fill m-4"></i
     ></router-link>
     <router-link :to="{ name: 'feed' }" class="navbar-brand" v-if="isLoggedIn">
-      <i class="bi bi-car-front-fill"></i>
+      <i class="bi bi-car-front-fill m-4"></i>
     </router-link>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -55,7 +55,7 @@
     <button
       @click="handleSignOut"
       v-if="isLoggedIn"
-      class="btn btn-light shadow-sm"
+      class="btn btn-light shadow-sm me-3"
     >
       Sign out
     </button>

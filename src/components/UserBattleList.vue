@@ -1,8 +1,10 @@
 <template>
-  <div :class="{ 'd-none': selectedUser }">
+  <div v-if="!selectedUser">
     <h2>Users</h2>
-    <div v-for="(user, index) in users" :key="index">
-      <UserBattleItem :user="user.data()" />
+    <div class="d-flex flex-column overflow-auto" style="max-height: 60vh">
+      <div v-for="(user, index) in users" :key="index">
+        <UserBattleItem :user="user.data()" />
+      </div>
     </div>
   </div>
 </template>

@@ -36,7 +36,7 @@ const randomItem = function (obj) {
 const actions = {
   [actionTypes.getCar](context) {
     const carStats = randomItem(carList);
-    carParams.messages[0].content = `Create car spec: Brand = ${carStats.name}, model, horsepower , type, weight, colour, price_in_usd, production_year`;
+    carParams.messages[0].content = `Create car spec: Brand = ${carStats.name}, model, horsepower , type, weight, colour, price_in_usd, production_year, description`;
     return new Promise((resolve) => {
       context.commit(mutationType.getCarStart);
       gptApi.getCar(carParams).then((response) => {

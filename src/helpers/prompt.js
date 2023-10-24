@@ -8,10 +8,10 @@ export const carParams = {
     {
       role: "system",
       content:
-        "Give user real car specification of real car. Generate data for specific car brand with real data. Json format, colour in hex, weight in kg, all values in string, all variable names lowercase",
+        "Give user real car specification of real car. Generate data for specific car brand with real data. Json format, colour in hex, weight in kg, all values in string, all variable names lowercase, description is intresting fact (170 characters max)",
     },
   ],
-  max_tokens: 140,
+  max_tokens: 200,
   top_p: 1,
   temperature: 0.5,
   frequency_penalty: 0,

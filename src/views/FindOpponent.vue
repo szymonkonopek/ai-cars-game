@@ -1,9 +1,9 @@
 <template>
-  <div style="margin-top: 7rem">
-    <h1 class="m-5">Select your opponent</h1>
-    <div class="d-flex justify-content-around">
+  <div style="margin-top: 5rem">
+    <h1 class="ms-5">Select your opponent</h1>
+    <div class="d-flex justify-content-between p-5">
       <MyCarFeed :isCol="true"></MyCarFeed>
-      <CarFeed :cars="otherCars" :isCol="true"></CarFeed>
+      <CarFeed :cars="otherCars" :isCol="true" :isInfoVisible="false"></CarFeed>
       <UserBattleList></UserBattleList>
       <BattleButton></BattleButton>
     </div>

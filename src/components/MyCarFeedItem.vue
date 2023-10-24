@@ -10,23 +10,32 @@
       :src="carData.data.logoImg"
       alt="Card image cap"
     /> -->
-    <div class="card-body text-left">
-      <div class="position-relative">
+    <div
+      class="card-body text-left position-relative overflow-auto"
+      style="height: 225px"
+    >
+      <button
+        class="position-absolute top-0 end-0 btn"
+        data-bs-toggle="modal"
+        :data-bs-target="'#id' + this.id"
+        v-if="this.isInfoVisible"
+      >
         <i class="bi bi-info-circle float-right"></i>
-      </div>
+      </button>
       <h5 class="card-title">{{ carData.data.brand }}</h5>
       <h6 class="card-subtitle text-muted">{{ carData.data.model }}</h6>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
+      <p class="card-text">{{ carData.data.description }}</p>
     </div>
   </button>
+  <div class="modal fade" :id="'id' + this.id" tabindex="-1" aria-hidden="true">
+    <CarInfoModel :carData="this.carData" :id="this.id" />
+  </div>
 </template>
 
 <script>
 import { actionTypes } from "@/store/modules/firebaseDatabase";
 import { mapState } from "vuex";
+import CarInfoModel from "@/components/CarInfoModal.vue";
 
 export default {
   name: "MyCarFeedItem",
@@ -39,6 +48,13 @@ export default {
       typeof: String,
       required: true,
     },
+    isInfoVisible: {
+      typeof: Boolean,
+      required: false,
+    },
+  },
+  components: {
+    CarInfoModel,
   },
   computed: {
     ...mapState({

@@ -7,7 +7,6 @@
     /> -->
     <div class="card-body text-left">
       <h5 class="card-title">{{ user.username }}</h5>
-      <p class="card-text">Select me</p>
     </div>
   </button>
 </template>
