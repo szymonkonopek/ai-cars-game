@@ -22,6 +22,20 @@
       >
         <i class="bi bi-info-circle float-right"></i>
       </button>
+      <a
+        class="position-absolute top-0 start-0 btn"
+        :href="
+          'https://www.google.com/search?tbm=isch&q=' +
+          this.carData.data.brand +
+          ' ' +
+          this.carData.data.model +
+          ' ' +
+          this.carData.data.production_year
+        "
+        target="_blank"
+      >
+        <i class="bi bi-images"></i>
+      </a>
       <h5 class="card-title">{{ carData.data.brand }}</h5>
       <h6 class="card-subtitle text-muted">{{ carData.data.model }}</h6>
       <p class="card-text">{{ carData.data.description }}</p>

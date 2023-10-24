@@ -68,7 +68,11 @@ export default {
                   car2: this.car2,
                 })
                 .then((response) => {
-                  console.log(response);
+                  this.$store.dispatch(firebaseActionTypes.saveBattleResult, {
+                    car1: this.car1,
+                    car2: this.car2,
+                    result: response,
+                  });
                   this.explanation = response;
                 });
             })

@@ -27,8 +27,11 @@ export const actionTypes = {
   selectMyCar: "[database] select my car",
   selectOtherCar: "[database] select other car",
   getUsers: "[database] get users",
+  getUserById: "[database] get user by id",
   getCarById: "[database] getCarById",
   deleteCarById: "[database] delete car by id",
+  saveBattleResult: "[database] save battle result",
+  getBattleResults: "[database] get battle results",
 };
 
 export const mutationType = {
@@ -42,6 +45,7 @@ export const mutationType = {
   setUsersSuccess: "[database] set Users Success",
   setSelectedUser: "[database] setSelectedUser",
   getCarById: "[database] get car by id success",
+  getBattleResultsSuccess: "[database] getBattleResultsSuccess",
 };
 
 const mutations = {
@@ -72,6 +76,9 @@ const mutations = {
   },
   [mutationType.getCarByIdSuccess](state, payload) {
     state.users = payload;
+  },
+  [mutationType.getBattleResultsSuccess](state, payload) {
+    state.battles = payload;
   },
 };
 
@@ -123,6 +130,14 @@ const actions = {
       resolve();
     });
   },
+  [actionTypes.getUserById](context, { id }) {
+    return new Promise((resolve) => {
+      const q = query(doc(db, "users", id));
+      getDoc(q).then((result) => {
+        resolve(result.data());
+      });
+    });
+  },
   [actionTypes.getUsers](context, { uid }) {
     return new Promise((resolve) => {
       const q = query(collection(db, "users"), where("user_id", "!=", uid));
@@ -146,6 +161,26 @@ const actions = {
       const q = query(doc(db, "cars", id));
       deleteDoc(q).then(() => {
         resolve();
+      });
+    });
+  },
+  [actionTypes.saveBattleResult](context, { car1, car2, result }) {
+    return new Promise((resolve) => {
+      addDoc(collection(db, "battles"), {
+        car1: car1,
+        car2: car2,
+        result: result,
+      }).then(() => {
+        resolve();
+      });
+    });
+  },
+  [actionTypes.getBattleResults](context) {
+    return new Promise((resolve) => {
+      const q = query(collection(db, "battles"));
+      getDocs(q).then((result) => {
+        context.commit(mutationType.getBattleResultsSuccess, result.docs);
+        resolve(result.docs);
       });
     });
   },

@@ -30,7 +30,11 @@
       >
         <span class="sr-only"></span>
       </div>
-      <button class="btn btn-warning btn-lg mt-4" @click="handleGetCar">
+      <button
+        class="btn btn-warning btn-lg mt-4 shadow"
+        :disabled="this.isLoading || this.car != false"
+        @click="handleGetCar"
+      >
         Get a new car!
       </button>
       <div class="text-muted">3 cars available</div>
@@ -47,7 +51,7 @@ export default {
   name: "RewardsVIew",
   data() {
     return {
-      car: "",
+      car: false,
     };
   },
   computed: {
