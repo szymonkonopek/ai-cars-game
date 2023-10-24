@@ -7,20 +7,39 @@
       </div>
       <div class="card">
         <div class="card-body d-flex justify-content-between">
-          <div class="text-success p-4">
+          <div
+            class="p-4"
+            :class="
+              battleInfo.winner == 'car1'
+                ? { 'text-success': true }
+                : { 'text-danger': true }
+            "
+          >
             <div class="card-title">{{ car1.brand }}</div>
-            <h6 class="card-subtitle mb-2 text-body-secondary text-nowrap">
+            <h6 class="card-subtitle mb-2 text-nowrap">
               {{ car1.model }}
             </h6>
           </div>
           <div>
             <div class="card">
-              <div class="card-body">{{ battleInfo.explanation }}</div>
+              <div class="text-center text-secondary">
+                {{ battleInfo.category }}
+              </div>
+              <div class="card-body text-center">
+                {{ battleInfo.explanation }}
+              </div>
             </div>
           </div>
-          <div class="p-4">
-            <div class="card-title text-danger">{{ car2.brand }}</div>
-            <h6 class="card-subtitle mb-2 text-body-secondary text-nowrap">
+          <div
+            class="p-4"
+            :class="
+              battleInfo.winner == 'car2'
+                ? { 'text-success': true }
+                : { 'text-danger': true }
+            "
+          >
+            <div class="card-title">{{ car2.brand }}</div>
+            <h6 class="card-subtitle mb-2 text-nowrap">
               {{ car2.model }}
             </h6>
           </div>

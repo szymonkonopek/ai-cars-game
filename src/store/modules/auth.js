@@ -17,7 +17,6 @@ export const actionTypes = {
   logout: "[auth] logout",
   signInWithGoogle: "[auth] sing in with google",
   GetMyUid: "[auth] my uid",
-  getMyUser: "[auth] get my user",
 };
 
 const state = {
@@ -115,7 +114,7 @@ const actions = {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         state.uid = user.uid;
-        resolve();
+        resolve(user.uid);
       });
     });
   },

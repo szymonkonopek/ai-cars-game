@@ -8,6 +8,7 @@ import {
   where,
   query,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "@/main.js";
 
@@ -32,6 +33,7 @@ export const actionTypes = {
   deleteCarById: "[database] delete car by id",
   saveBattleResult: "[database] save battle result",
   getBattleResults: "[database] get battle results",
+  updateRecord: "[database] update record",
 };
 
 export const mutationType = {
@@ -181,6 +183,13 @@ const actions = {
       getDocs(q).then((result) => {
         context.commit(mutationType.getBattleResultsSuccess, result.docs);
         resolve(result.docs);
+      });
+    });
+  },
+  [actionTypes.updateRecord](context, { collectionName, recordName, keyItem }) {
+    return new Promise((resolve) => {
+      updateDoc(doc(db, collectionName, recordName), keyItem).then(() => {
+        resolve();
       });
     });
   },

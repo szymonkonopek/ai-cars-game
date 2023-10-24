@@ -83,6 +83,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch(actionTypes.selectMyCar, { id: "" });
+    console.log("cardda", this.carData);
   },
 };
 </script>

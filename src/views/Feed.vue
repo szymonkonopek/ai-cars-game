@@ -3,8 +3,6 @@
     <div v-for="(battle, index) in this.battles" :key="index">
       <FeedCarListItem :battle="battle" />
     </div>
-
-    <div style="height: 1000px"></div>
   </div>
 </template>
 

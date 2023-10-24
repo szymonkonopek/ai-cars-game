@@ -48,14 +48,17 @@ const actions = {
     });
   },
   [actionTypes.getVersusCarsResults](context, { car1, car2 }) {
+    const category = randomItem(categoryList);
     versusParams.messages[0].content = `compare ${car1.data.brand} and ${
       car2.data.brand
     }. car1: ${JSON.stringify(car1.data)}. car2: ${JSON.stringify(
       car2.data
-    )}. Category: ${randomItem(categoryList)}`;
+    )}. Category: ${category}`;
     return new Promise((resolve) => {
       gptApi.compareCars(versusParams).then((response) => {
-        resolve(JSON.parse(response.choices[0].message.content));
+        const jsonResponse = JSON.parse(response.choices[0].message.content);
+        jsonResponse["category"] = category;
+        resolve(jsonResponse);
       });
     });
   },

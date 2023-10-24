@@ -32,12 +32,16 @@
       </div>
       <button
         class="btn btn-warning btn-lg mt-4 shadow"
-        :disabled="this.isLoading || this.car != false"
+        :disabled="
+          this.isLoading || this.car != false || this.user.available_cars < 1
+        "
         @click="handleGetCar"
       >
         Get a new car!
       </button>
-      <div class="text-muted">3 cars available</div>
+      <div class="text-muted">
+        {{ this.user.available_cars }} cars available
+      </div>
     </div>
   </div>
 </template>
@@ -46,12 +50,14 @@
 import { mapState } from "vuex";
 import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
 import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
+import { actionTypes as authActionTypes } from "@/store/modules/auth";
 
 export default {
   name: "RewardsVIew",
   data() {
     return {
       car: false,
+      user: "",
     };
   },
   computed: {
@@ -70,8 +76,28 @@ export default {
           this.$store.dispatch(firebaseActionTypes.saveCar, {
             data: this.car,
           });
+        })
+        .then(() => {
+          this.user.available_cars -= 1;
+          this.$store.dispatch(firebaseActionTypes.updateRecord, {
+            collectionName: "users",
+            recordName: this.user.user_id,
+            keyItem: {
+              available_cars: this.user.available_cars - 1,
+            },
+          });
         });
     },
+  },
+  mounted() {
+    this.$store.dispatch(authActionTypes.GetMyUid).then((response) => {
+      this.$store
+        .dispatch(firebaseActionTypes.getUserById, { id: response })
+        .then((response) => {
+          this.user = response;
+          console.log(this.user);
+        });
+    });
   },
 };
 </script>
