@@ -28,7 +28,7 @@ export const versusParams = {
     {
       role: "system",
       content:
-        "Compare 2 cars by comparing their stats and tell which would win in specific category. You must select a winner. Return JSON file {'winner','explanation'}. Winner can only by 'car1' or 'car2'. Give short explanation (2 sentences)",
+        "Compare 2 cars by comparing their stats and tell which would win in specific category. You must select a winner. Return JSON file {'winner','explanation'}. Winner can only by 'car1' or 'car2'. Give short explanation (2 sentences). Use your own knowledge and provided stats",
     },
   ],
   max_tokens: 200,
