@@ -83,7 +83,7 @@ export default {
             collectionName: "users",
             recordName: this.user.user_id,
             keyItem: {
-              available_cars: this.user.available_cars - 1,
+              available_cars: this.user.available_cars,
             },
           });
         });
