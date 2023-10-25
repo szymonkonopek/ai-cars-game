@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 5rem">
     <h1 class="ms-5">Select your opponent</h1>
-    <div class="d-flex justify-content-between p-5">
+    <div class="d-flex justify-content-around p-5 flex-wrap">
       <MyCarFeed :isCol="true"></MyCarFeed>
       <CarFeed :cars="otherCars" :isCol="true" :isInfoVisible="false"></CarFeed>
       <UserBattleList></UserBattleList>

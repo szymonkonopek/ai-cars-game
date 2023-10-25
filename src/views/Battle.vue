@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 7rem">
     <h1 class="m-5">Battle</h1>
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around flex-wrap">
       <BattleCarInfo
         :carId="this.mySelectedCar"
         :title="'My car'"

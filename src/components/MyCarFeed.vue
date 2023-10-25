@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <h2>My cars</h2>
     <div
       class="d-flex mx-auto"

@@ -15,19 +15,8 @@
                 : { 'text-danger': true }
             "
           >
-            <div class="card-title">{{ car1.brand }}</div>
-            <h6 class="card-subtitle mb-2 text-nowrap">
-              {{ car1.model }}
-            </h6>
-          </div>
-          <div>
-            <div class="card">
-              <div class="text-center text-secondary">
-                {{ battleInfo.category }}
-              </div>
-              <div class="card-body text-center">
-                {{ battleInfo.explanation }}
-              </div>
+            <div class="card-title">
+              {{ car1.brand }} <span class="fw-bold">{{ car1.model }}</span>
             </div>
           </div>
           <div
@@ -38,10 +27,19 @@
                 : { 'text-danger': true }
             "
           >
-            <div class="card-title">{{ car2.brand }}</div>
-            <h6 class="card-subtitle mb-2 text-nowrap">
-              {{ car2.model }}
-            </h6>
+            <div class="card-title">
+              {{ car2.brand }} <span class="fw-bold">{{ car2.model }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="card w-75">
+            <div class="text-center text-secondary">
+              {{ battleInfo.category }}
+            </div>
+            <div class="card-body text-center">
+              {{ battleInfo.explanation }}
+            </div>
           </div>
         </div>
       </div>

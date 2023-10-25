@@ -1,6 +1,10 @@
 <template>
-  <div class="d-flex flex-column align-items-center">
-    <div v-if="selectedUser" class="d-flex">
+  <div
+    class="d-flex flex-column align-items-center"
+    style="width: 304px"
+    v-if="selectedUser"
+  >
+    <div class="d-flex">
       <button
         @click="handleBackClick"
         class="btn btn-light shadow-none mr-3 mb-2"

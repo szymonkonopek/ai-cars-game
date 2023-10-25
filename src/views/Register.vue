@@ -43,7 +43,7 @@
                   class="form-control btn btn-primary rounded submit px-3 shadow-sm"
                   @click="register"
                 >
-                  Login
+                  Register
                 </button>
               </div>
               <!-- <div class="form-group d-md-flex">

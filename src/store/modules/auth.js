@@ -45,6 +45,7 @@ const mutations = {
         break;
       case "auth/weak-password":
         state.validationError = "Password requires min. 6 characters";
+        break;
     }
   },
   [mutationType.authStart](state) {
