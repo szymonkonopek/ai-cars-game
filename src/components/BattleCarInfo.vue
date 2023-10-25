@@ -29,14 +29,17 @@
         <h5 class="card-title">{{ car.brand }}</h5>
         <h6 class="card-subtitle text-muted">{{ car.model }}</h6>
         <p class="card-text">{{ car.description }}</p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Horsepower: {{ car.horsepower }}</li>
+          <li class="list-group-item">
+            Production date: {{ car.production_year }}
+          </li>
+          <li class="list-group-item">$Price: {{ car.price_in_usd }}</li>
+          <li class="list-group-item">Type: {{ car.type }}</li>
+          <li class="list-group-item">Weight: {{ car.weight }}</li>
+        </ul>
       </div>
     </button>
-    <div
-      class="modal fade"
-      :id="'id' + this.id"
-      tabindex="-1"
-      aria-hidden="true"
-    ></div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="m-5">
+    <div class="ms-5 me-5 mb-5">
       <div class="d-flex justify-content-between">
         <div>{{ user1.username }}</div>
         <div>{{ user2.username }}</div>

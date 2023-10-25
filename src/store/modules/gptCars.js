@@ -16,6 +16,8 @@ export const actionTypes = {
 export const mutationType = {
   getCarSuccess: "[gpt] getCarSuccess ",
   getCarStart: "[gpt] getCarStart",
+  getVersusCarsResultsStart: "[gpt] getVersusCarsResultsStart",
+  getVersusCarsResultsSuccess: "[gpt] getVersusCarsResultsSuccess",
 };
 
 const mutations = {
@@ -25,6 +27,12 @@ const mutations = {
   },
   [mutationType.getCarStart](state) {
     state.isLoading = true;
+  },
+  [mutationType.getVersusCarsResultsStart](state) {
+    state.isLoading = true;
+  },
+  [mutationType.getVersusCarsResultsSuccess](state) {
+    state.isLoading = false;
   },
 };
 
@@ -48,6 +56,7 @@ const actions = {
     });
   },
   [actionTypes.getVersusCarsResults](context, { car1, car2 }) {
+    context.commit(mutationType.getVersusCarsResultsStart);
     const category = randomItem(categoryList);
     versusParams.messages[0].content = `compare ${car1.data.brand} and ${
       car2.data.brand
@@ -58,6 +67,7 @@ const actions = {
       gptApi.compareCars(versusParams).then((response) => {
         const jsonResponse = JSON.parse(response.choices[0].message.content);
         jsonResponse["category"] = category;
+        context.commit(mutationType.getVersusCarsResultsSuccess);
         resolve(jsonResponse);
       });
     });

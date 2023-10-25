@@ -1,13 +1,13 @@
 <template>
   <div style="margin-top: 7rem">
     <div class="d-flex flex-column justify-content-center align-items-center">
-      <div :class="{ 'd-none': this.car || this.isLoading }">
+      <div v-if="!this.car && !this.isLoading">
         <i
           class="d-flex bi bi-trophy text-warning justify-content-center mt-5"
           style="font-size: 175px"
         ></i>
       </div>
-      <div class="card" :class="{ 'd-none': !this.car }">
+      <div class="card" v-if="this.car && !this.isLoading">
         <div class="card-body text-left">
           <h5 class="card-title">{{ car.brand }}</h5>
           <h6 class="card-subtitle text-muted">{{ car.model }}</h6>

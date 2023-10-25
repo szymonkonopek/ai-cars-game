@@ -9,6 +9,8 @@ import {
   query,
   deleteDoc,
   updateDoc,
+  serverTimestamp,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "@/main.js";
 
@@ -177,6 +179,7 @@ const actions = {
         car1: car1,
         car2: car2,
         result: result,
+        created: serverTimestamp(),
       }).then(() => {
         resolve();
       });
@@ -184,7 +187,7 @@ const actions = {
   },
   [actionTypes.getBattleResults](context) {
     return new Promise((resolve) => {
-      const q = query(collection(db, "battles"));
+      const q = query(collection(db, "battles"), orderBy("created"));
       getDocs(q).then((result) => {
         context.commit(mutationType.getBattleResultsSuccess, result.docs);
         resolve(result.docs);

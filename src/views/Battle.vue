@@ -11,17 +11,28 @@
         :title="'Enemy car'"
       ></BattleCarInfo>
     </div>
-    <div class="d-flex justify-content-center" v-if="this.explanation">
-      <div class="card">
-        <div class="card-body">{{ this.explanation.explanation }}</div>
+    <div class="d-flex justify-content-center m-5" v-if="this.explanation">
+      <div class="card w-75">
+        <div class="card-body text-center">
+          {{ this.explanation.explanation }}
+        </div>
       </div>
     </div>
     <button
       @click="handleStartBattle"
       class="d-flex fixed-bottom justify-content-center btn btn-primary rounded-0"
+      v-if="!this.explanation"
+      :disabled="isLoading"
     >
       Start race
     </button>
+
+    <router-link
+      class="d-flex fixed-bottom justify-content-center btn btn-primary rounded-0"
+      v-if="this.explanation"
+      :to="'/feed'"
+      >See other races</router-link
+    >
   </div>
 </template>
 
@@ -40,6 +51,7 @@ export default {
     ...mapState({
       mySelectedCar: (state) => state.firebaseDatabase.mySelectedCar,
       otherSelectedCar: (state) => state.firebaseDatabase.otherSelectedCar,
+      isLoading: (state) => state.gptCars.isLoading,
     }),
   },
   data() {

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 7rem">
+  <div style="margin-top: 7rem" class="d-flex flex-column-reverse">
     <div v-for="(battle, index) in this.battles" :key="index">
       <FeedCarListItem :battle="battle" />
     </div>
