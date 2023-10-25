@@ -11,14 +11,17 @@
         :title="'Enemy car'"
       ></BattleCarInfo>
     </div>
-
+    <div class="d-flex justify-content-center" v-if="this.explanation">
+      <div class="card">
+        <div class="card-body">{{ this.explanation.explanation }}</div>
+      </div>
+    </div>
     <button
       @click="handleStartBattle"
       class="d-flex fixed-bottom justify-content-center btn btn-primary rounded-0"
     >
       Start race
     </button>
-    {{ this.explanation }}
   </div>
 </template>
 

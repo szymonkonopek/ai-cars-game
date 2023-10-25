@@ -19,6 +19,7 @@ const state = {
   mySelectedCar: undefined,
   users: undefined,
   selectedUser: "",
+  tempAvailableCars: undefined,
 };
 
 export const actionTypes = {
@@ -48,6 +49,7 @@ export const mutationType = {
   setSelectedUser: "[database] setSelectedUser",
   getCarById: "[database] get car by id success",
   getBattleResultsSuccess: "[database] getBattleResultsSuccess",
+  setAvailableCars: "[database] setAvailableCars",
 };
 
 const mutations = {
@@ -81,6 +83,9 @@ const mutations = {
   },
   [mutationType.getBattleResultsSuccess](state, payload) {
     state.battles = payload;
+  },
+  [mutationType.setAvailableCars](state, payload) {
+    state.tempAvailableCars = payload;
   },
 };
 

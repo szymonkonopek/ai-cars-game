@@ -12,7 +12,6 @@ import { db } from "@/main.js";
 export const actionTypes = {
   register: "[auth] Register",
   login: "[auth] Login",
-  getCurrentUser: "[auth] GetCurrentUser",
   updateCurrentUser: "[auth] UpdateCurrentUser",
   logout: "[auth] logout",
   signInWithGoogle: "[auth] sing in with google",

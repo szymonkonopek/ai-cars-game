@@ -12,7 +12,10 @@
       </div>
       <div class="modal-body">
         <ul class="list-group list-group-flush">
-          <div v-for="(key, index) in Object.keys(carData.data)" :key="index">
+          <div
+            v-for="(key, index) in Object.keys(this.carData.data)"
+            :key="index"
+          >
             <li class="list-group-item" v-if="key != 'logoImg'">
               {{ key }} : {{ carData.data[key] }}
               <span
@@ -25,7 +28,7 @@
           </div>
         </ul>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" v-if="!this.disableDelete">
         <button type="button" class="btn btn-danger" @click="handleDelete">
           Delete this car
         </button>
@@ -47,9 +50,10 @@ export default {
       typeOf: String,
       required: false,
     },
-  },
-  mounted() {
-    console.log(this.id);
+    disableDelete: {
+      typeOf: Boolean,
+      required: false,
+    },
   },
   methods: {
     handleDelete() {
@@ -59,6 +63,9 @@ export default {
           this.$router.go();
         });
     },
+  },
+  mounted() {
+    console.log("cardata", this.carData);
   },
 };
 </script>

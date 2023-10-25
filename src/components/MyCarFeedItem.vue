@@ -77,13 +77,11 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log(this.id);
       this.$store.dispatch(actionTypes.selectMyCar, { id: this.id });
     },
   },
   mounted() {
     this.$store.dispatch(actionTypes.selectMyCar, { id: "" });
-    console.log("cardda", this.carData);
   },
 };
 </script>

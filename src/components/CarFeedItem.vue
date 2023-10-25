@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log(this.id);
       this.$store.dispatch(actionTypes.selectOtherCar, { id: this.id });
     },
   },

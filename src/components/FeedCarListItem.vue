@@ -69,7 +69,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.battle.data().car1.user_id);
     this.$store
       .dispatch(actionTypes.getUserById, {
         id: this.battle.data().car1.user_id,

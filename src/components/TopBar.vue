@@ -27,13 +27,26 @@
         <li class="nav-item">
           <router-link
             :to="{ name: 'rewards' }"
-            class="nav-link"
+            class="nav-link position-relative d-flex"
             v-if="isLoggedIn"
-            >Rewards
+          >
             <i
               class="bi bi-award-fill text-warning"
               style="font-size: 15px"
             ></i>
+            <div>Rewards</div>
+            <span
+              v-if="this.availableCars && !this.tempAvailableCars"
+              class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
+            >
+              {{ this.availableCars }}
+            </span>
+            <span
+              v-if="this.tempAvailableCars"
+              class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
+            >
+              {{ this.tempAvailableCars }}
+            </span>
           </router-link>
         </li>
       </ul>
@@ -64,6 +77,9 @@
 
 <script>
 import { getAuth } from "firebase/auth";
+import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
+import { actionTypes as authActionTypes } from "@/store/modules/auth";
+import { mapState } from "vuex";
 
 export default {
   name: "AppTopBar",
@@ -71,6 +87,7 @@ export default {
     return {
       isLoggedIn: "",
       auth: "",
+      availableCars: "",
     };
   },
   mounted() {
@@ -78,6 +95,13 @@ export default {
     this.auth().onAuthStateChanged((user) => {
       if (user) {
         this.isLoggedIn = true;
+        this.$store.dispatch(authActionTypes.GetMyUid).then((id) => {
+          this.$store
+            .dispatch(firebaseActionTypes.getUserById, { id: id })
+            .then((response) => {
+              this.availableCars = response.available_cars;
+            });
+        });
       } else {
         this.isLoggedIn = false;
       }
@@ -91,6 +115,11 @@ export default {
           this.$router.push({ name: "home" });
         });
     },
+  },
+  computed: {
+    ...mapState({
+      tempAvailableCars: (state) => state.firebaseDatabase.tempAvailableCars,
+    }),
   },
 };
 </script>
