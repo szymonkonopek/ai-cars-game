@@ -1,78 +1,104 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
-    <router-link :to="{ name: 'home' }" v-if="!isLoggedIn" class="navbar-brand">
-      <i class="bi bi-car-front-fill m-4"></i
-    ></router-link>
-    <router-link :to="{ name: 'feed' }" class="navbar-brand" v-if="isLoggedIn">
-      <i class="bi bi-car-front-fill m-4"></i>
-    </router-link>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <router-link
+          :to="{ name: 'home' }"
+          v-if="!isLoggedIn"
+          class="navbar-brand"
+        >
+          <i class="bi bi-car-front-fill m-4"></i
+        ></router-link>
+        <router-link
+          :to="{ name: 'feed' }"
+          class="navbar-brand"
+          v-if="isLoggedIn"
+        >
+          <i class="bi bi-car-front-fill m-4"></i>
+        </router-link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'findOpponent' }"
+                v-if="isLoggedIn"
+                class="nav-link"
+                >Find opponent</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'equipment' }"
+                v-if="isLoggedIn"
+                class="nav-link"
+                >Equipment</router-link
+              >
+            </li>
+
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'rewards' }"
+                class="nav-link d-flex"
+                v-if="isLoggedIn"
+              >
+                <i
+                  class="bi bi-award-fill text-warning"
+                  style="font-size: 15px"
+                ></i>
+                <div class="position-relative">
+                  Rewards &#8203;
+                  <span
+                    v-if="this.availableCars && !this.tempAvailableCars != 0"
+                    class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
+                  >
+                    {{ this.availableCars }}
+                  </span>
+                  <span
+                    v-if="this.tempAvailableCars"
+                    class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
+                  >
+                    {{ this.tempAvailableCars }}
+                  </span>
+                </div>
+              </router-link>
+            </li>
+          </ul>
           <router-link
-            :to="{ name: 'findOpponent' }"
-            class="nav-link"
-            v-if="isLoggedIn"
-            >Find opponent</router-link
+            :to="{ name: 'login' }"
+            v-if="!isLoggedIn"
+            class="btn btn-primary me-3 shadow-sm"
           >
-        </li>
-        <li class="nav-item">
-          <router-link
-            :to="{ name: 'equipment' }"
-            v-if="isLoggedIn"
-            class="nav-link"
-            >Equipment</router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link
-            :to="{ name: 'rewards' }"
-            class="nav-link position-relative d-flex"
-            v-if="isLoggedIn"
-          >
-            <i
-              class="bi bi-award-fill text-warning"
-              style="font-size: 15px"
-            ></i>
-            <div>Rewards</div>
-            <span
-              v-if="this.availableCars && !this.tempAvailableCars != 0"
-              class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
-            >
-              {{ this.availableCars }}
-            </span>
-            <span
-              v-if="this.tempAvailableCars"
-              class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
-            >
-              {{ this.tempAvailableCars }}
-            </span>
+            Sign In
           </router-link>
-        </li>
-      </ul>
-    </div>
-    <router-link
-      :to="{ name: 'login' }"
-      v-if="!isLoggedIn"
-      class="btn btn-primary me-3 shadow-sm"
-    >
-      Sign In
-    </router-link>
-    <router-link
-      :to="{ name: 'register' }"
-      v-if="!isLoggedIn"
-      class="btn btn-light me-3 shadow-lg"
-    >
-      Register
-    </router-link>
-    <button
-      @click="handleSignOut"
-      v-if="isLoggedIn"
-      class="btn btn-light shadow-sm me-3"
-    >
-      Sign out
-    </button>
-  </nav>
+          <router-link
+            :to="{ name: 'register' }"
+            v-if="!isLoggedIn"
+            class="btn btn-light me-3 shadow-lg"
+          >
+            Register
+          </router-link>
+          <button
+            @click="handleSignOut"
+            v-if="isLoggedIn"
+            class="btn btn-light shadow-sm me-3"
+          >
+            Sign out
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
