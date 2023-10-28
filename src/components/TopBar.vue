@@ -59,13 +59,13 @@
                 <div class="position-relative">
                   Rewards &#8203;
                   <span
-                    v-if="this.availableCars && !this.tempAvailableCars != 0"
+                    v-if="this.availableCars && this.tempAvailableCars != 0"
                     class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
                   >
                     {{ this.availableCars }}
                   </span>
                   <span
-                    v-if="this.tempAvailableCars"
+                    v-if="this.tempAvailableCars > 0"
                     class="position-absolute top-0 start-100 badge rounded-pill bg-warning"
                   >
                     {{ this.tempAvailableCars }}

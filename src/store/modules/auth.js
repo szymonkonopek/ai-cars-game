@@ -54,9 +54,9 @@ const mutations = {
 };
 
 const actions = {
-  [actionTypes.register](contenxt, credentials) {
+  [actionTypes.register](context, credentials) {
     return new Promise((resolve) => {
-      contenxt.commit(mutationType.authStart);
+      context.commit(mutationType.authStart);
       createUserWithEmailAndPassword(
         getAuth(),
         credentials.email,
@@ -74,11 +74,11 @@ const actions = {
           });
         })
         .catch((error) => {
-          contenxt.commit(mutationType.authFailure, error.code);
+          context.commit(mutationType.authFailure, error.code);
         });
     });
   },
-  [actionTypes.signInWithGoogle]() {
+  [actionTypes.signInWithGoogle](context) {
     return new Promise((resolve) => {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
@@ -91,13 +91,13 @@ const actions = {
           resolve();
         })
         .catch((error) => {
-          console.log(error.code);
+          context.commit(mutationType.authFailure, error.code);
         });
     });
   },
-  [actionTypes.login](contenxt, credentials) {
+  [actionTypes.login](context, credentials) {
     return new Promise((resolve) => {
-      contenxt.commit(mutationType.authStart);
+      context.commit(mutationType.authStart);
       const auth = getAuth();
       signInWithEmailAndPassword(auth, credentials.email, credentials.password)
         .then((response) => {
@@ -105,7 +105,7 @@ const actions = {
           resolve();
         })
         .catch((error) => {
-          contenxt.commit(mutationType.authFailure, error.code);
+          context.commit(mutationType.authFailure, error.code);
         });
     });
   },

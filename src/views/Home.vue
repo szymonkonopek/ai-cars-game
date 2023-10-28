@@ -63,7 +63,7 @@
               'The Audi R8s V10 engine is based on Lamborghinis Gallardo V10, showcasing its high-performance pedigree.',
           },
         }"
-        :id="'1234567'"
+        :id="'Audi'"
         :isInfoVisible="true"
       />
     </div>
@@ -73,14 +73,14 @@
       <MyCarFeedItem
         :carData="{
           data: {
-            brand: 'Audi',
-            model: 'R8',
-            production_year: '2018',
+            brand: 'Ferrari',
+            model: '458',
+            production_year: '2016',
             description:
-              'The Audi R8s V10 engine is based on Lamborghinis Gallardo V10, showcasing its high-performance pedigree.',
+              'The Ferrari 458 Italias V8 engine revs so quickly that its ECU had to be specially programmed to prevent it from spinning too fast.',
           },
         }"
-        :id="'1234567'"
+        :id="'Ferrar'"
         :isInfoVisible="true"
       />
       <div class="p-5 w-50">
@@ -95,7 +95,7 @@
     <div
       class="d-flex justify-content-center align-items-center flex-wrap mt-5"
     >
-      <div class="p-5 w-50">
+      <div class="p-5 w-50 mb-5">
         <h5 class="font-weight-bold">Discover the Winner</h5>
         As the tires screech and the finish line approaches, the tension mounts.
         But fear not! Our component takes care of all the calculations and
@@ -105,18 +105,17 @@
       <MyCarFeedItem
         :carData="{
           data: {
-            brand: 'Audi',
-            model: 'R8',
-            production_year: '2018',
+            brand: 'Volkswagen',
+            model: 'Jetta',
+            production_year: '2012',
             description:
-              'The Audi R8s V10 engine is based on Lamborghinis Gallardo V10, showcasing its high-performance pedigree.',
+              'The VW Jetta, named after the Atlantic jetstream, holds the Guinness World Record for the longest non-stop journey by a single car, covering 1.6 million miles.',
           },
         }"
-        :id="'1234567'"
+        :id="'VW'"
         :isInfoVisible="true"
       />
     </div>
-    <div style="height: 1000px"></div>
   </div>
 </template>
 
