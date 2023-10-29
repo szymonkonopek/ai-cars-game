@@ -40,6 +40,12 @@
       <div class="text-muted">
         {{ this.user.available_cars }} cars available
       </div>
+      <button
+        @click="handlePayment"
+        class="d-flex justify-content-center btn btn-primary rounded-0"
+      >
+        Buy 10 cars for 1PLN
+      </button>
     </div>
   </div>
 </template>
@@ -49,6 +55,8 @@ import { mapState } from "vuex";
 import { actionTypes as gptActionTypes } from "@/store/modules/gptCars";
 import { actionTypes as firebaseActionTypes } from "@/store/modules/firebaseDatabase";
 import { actionTypes as authActionTypes } from "@/store/modules/auth";
+import { actionTypes as stripeActionTypes } from "@/store/modules/stripe";
+
 import { mutationType } from "@/store/modules/firebaseDatabase";
 
 export default {
@@ -65,6 +73,17 @@ export default {
     }),
   },
   methods: {
+    handlePayment() {
+      this.$store.dispatch(stripeActionTypes.buyCars).then(() => {
+        this.$store.dispatch(firebaseActionTypes.updateRecord, {
+          collectionName: "users",
+          recordName: this.user.user_id,
+          keyItem: {
+            available_cars: this.user.available_cars + 10,
+          },
+        });
+      });
+    },
     handleGetCar() {
       this.$store
         .dispatch(gptActionTypes.getCar)

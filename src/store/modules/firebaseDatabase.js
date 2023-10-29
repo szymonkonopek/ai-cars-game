@@ -197,6 +197,7 @@ const actions = {
   [actionTypes.updateRecord](context, { collectionName, recordName, keyItem }) {
     return new Promise((resolve) => {
       updateDoc(doc(db, collectionName, recordName), keyItem).then(() => {
+        console.log("record updated");
         resolve();
       });
     });
