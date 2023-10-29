@@ -47,12 +47,17 @@ const actions = {
     carParams.messages[0].content = `Create car spec: Brand = ${carStats.name}, model, horsepower , type, weight, colour, price_in_usd, production_year, description`;
     return new Promise((resolve) => {
       context.commit(mutationType.getCarStart);
-      gptApi.getCar(carParams).then((response) => {
-        const data = JSON.parse(response.choices[0].message.content);
-        data.logoImg = carStats.logo;
-        context.commit(mutationType.getCarSuccess, data);
-        resolve(data);
-      });
+      gptApi
+        .getCar(carParams)
+        .then((response) => {
+          const data = JSON.parse(response.choices[0].message.content);
+          data.logoImg = carStats.logo;
+          context.commit(mutationType.getCarSuccess, data);
+          resolve(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   },
   [actionTypes.getVersusCarsResults](context, { car1, car2 }) {
@@ -64,12 +69,17 @@ const actions = {
       car2.data
     )}. Category: ${category}`;
     return new Promise((resolve) => {
-      gptApi.compareCars(versusParams).then((response) => {
-        const jsonResponse = JSON.parse(response.choices[0].message.content);
-        jsonResponse["category"] = category;
-        context.commit(mutationType.getVersusCarsResultsSuccess);
-        resolve(jsonResponse);
-      });
+      gptApi
+        .compareCars(versusParams)
+        .then((response) => {
+          const jsonResponse = JSON.parse(response.choices[0].message.content);
+          jsonResponse["category"] = category;
+          context.commit(mutationType.getVersusCarsResultsSuccess);
+          resolve(jsonResponse);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   },
 };
