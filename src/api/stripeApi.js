@@ -4,7 +4,8 @@ const createSession = () => {
   return stripe.checkout.sessions
     .create({
       success_url: `${process.env.VUE_APP_STRIPE_SUCCESS}`,
-      line_items: [{ price: "price_1O6fsULaHNzWFHvr4vQgLVYM", quantity: 1 }],
+      cancel_url: `http://localhost:8080/equipment`,
+      line_items: [{ price: "price_1O7FaTLaHNzWFHvrjJRXvzPz", quantity: 1 }],
       mode: "payment",
     })
     .then((resp) => {

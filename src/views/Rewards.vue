@@ -41,10 +41,11 @@
         {{ this.user.available_cars }} cars available
       </div>
       <button
+        v-if="this.user.available_cars < 1"
         @click="handlePayment"
-        class="d-flex justify-content-center btn btn-primary rounded-0"
+        class="btn btn-warning btn-lg mt-4 shadow"
       >
-        Buy 10 cars for 1PLN
+        Buy 3 cars for 3PLN
       </button>
     </div>
   </div>
@@ -79,7 +80,7 @@ export default {
           collectionName: "users",
           recordName: this.user.user_id,
           keyItem: {
-            available_cars: this.user.available_cars + 10,
+            available_cars: this.user.available_cars + 3,
           },
         });
       });

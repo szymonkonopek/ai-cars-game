@@ -18,9 +18,10 @@ const actions = {
         const sessionId = resp.id;
         loadStripe(`${process.env.VUE_APP_STRIPE_PUB_KEY}`)
           .then((stripe) => {
-            stripe.redirectToCheckout({ sessionId });
+            console.log("stripe", stripe.redirectToCheckout({ sessionId }));
             resolve();
           })
+
           .catch((error) => {
             console.log(error);
           });
